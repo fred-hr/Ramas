@@ -1,3 +1,615 @@
-body { font-family: sans-serif; background-color: #f4f4f4; color: #333; padding: 20px; }
-.comando { background: white; padding: 15px; margin-bottom: 10px; border-left: 5px solid #2ecc71; border-radius: 4px; }
-h1 { color: #2c3e50; }
+/* ==============================
+   PALETA DE COLORES
+================================ */
+
+:root {
+    --verde-oscuro: #0b160f;
+    --verde-militar: #203728;
+    --verde-oliva: #55704b;
+    --verde-acento: #8fbd68;
+    --verde-brillo: #b8ef72;
+
+    --arena: #e0d5b8;
+    --blanco: #f5f7f2;
+    --gris: #c6cec5;
+    --negro: #080d0a;
+}
+
+
+/* ==============================
+   CONFIGURACIÓN GENERAL
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    min-height: 100vh;
+
+    color: var(--blanco);
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            rgba(5, 15, 8, 0.30),
+            rgba(5, 15, 8, 0.45)
+        ),
+        url("img/fondo-militar.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* ==============================
+   ENCABEZADO
+================================ */
+
+header {
+    max-width: 1100px;
+
+    margin: 0 auto 50px auto;
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    backdrop-filter: none;
+
+    position: relative;
+
+    overflow: visible;
+}
+
+/* elimina decoraciones antiguas */
+header::after {
+    display: none;
+}
+
+
+/* ==============================
+   LOGO
+================================ */
+
+.logo-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.logo {
+    display: block;
+
+    width: 260px;
+
+    max-width: 60vw;
+
+    height: auto;
+
+    margin: 0 auto 18px auto;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 14px
+            rgba(180, 255, 90, 0.55)
+        )
+        drop-shadow(
+            0 0 35px
+            rgba(180, 255, 90, 0.25)
+        );
+
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.logo:hover {
+    transform: scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(195, 255, 110, 0.90)
+        )
+        drop-shadow(
+            0 0 45px
+            rgba(195, 255, 110, 0.45)
+        );
+}
+
+
+/* ==============================
+   TITULO PRINCIPAL
+================================ */
+
+h1 {
+    color: var(--verde-brillo);
+
+    font-size:
+        clamp(
+            2.2rem,
+            5vw,
+            4rem
+        );
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 12px
+        rgba(184, 239, 114, 0.35);
+}
+
+
+/* ==============================
+   SUBTÍTULO
+================================ */
+
+header p {
+    color: #eef3eb;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 2px;
+
+    line-height: 1.6;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.8);
+}
+
+
+/* ==============================
+   CONTENEDOR PRINCIPAL
+================================ */
+
+main {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+/* ==============================
+   TARJETAS DE COMANDOS
+================================ */
+
+.comando {
+    position: relative;
+
+    padding: 28px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 32, 19, 0.72),
+            rgba(25, 58, 34, 0.68)
+        );
+
+    border:
+        1px solid
+        rgba(170, 220, 110, 0.30);
+
+    border-left:
+        6px solid
+        var(--verde-brillo);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(7px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.30);
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* ==============================
+   HOVER EN TARJETAS
+================================ */
+
+.comando:hover {
+    transform:
+        translateY(-10px)
+        scale(1.025);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(95, 135, 60, 0.94),
+            rgba(30, 80, 45, 0.94)
+        );
+
+    border-color: #c7ff85;
+
+    border-left-color: #d8ffa3;
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.50),
+
+        0 0 28px
+        rgba(180, 255, 100, 0.22);
+}
+
+
+/* ==============================
+   PUNTO TÁCTICO
+================================ */
+
+.comando::before {
+    content: "";
+
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 10px;
+    height: 10px;
+
+    background: #baff72;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px #baff72,
+        0 0 20px
+        rgba(186, 255, 114, 0.50);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.comando:hover::before {
+    transform: scale(1.6);
+
+    background: white;
+
+    box-shadow:
+        0 0 15px white,
+        0 0 35px #baff72;
+}
+
+
+/* ==============================
+   TITULO DE CADA TARJETA
+================================ */
+
+.comando h2 {
+    color: var(--arena);
+
+    font-size: 1.55rem;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 14px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.comando:hover h2 {
+    color: white;
+
+    transform:
+        translateX(8px);
+}
+
+
+/* ==============================
+   TEXTO DE TARJETAS
+================================ */
+
+.comando p {
+    color: #e0e7df;
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+
+    transition:
+        color 0.3s ease;
+}
+
+.comando:hover p {
+    color: white;
+}
+
+
+/* ==============================
+   CÓDIGO
+================================ */
+
+code {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    color: var(--verde-brillo);
+
+    background:
+        rgba(5, 12, 8, 0.90);
+
+    border:
+        1px solid
+        rgba(184, 239, 114, 0.25);
+
+    border-radius: 5px;
+
+    font-family:
+        "Cascadia Code",
+        "Courier New",
+        monospace;
+}
+
+pre {
+    margin-top: 14px;
+
+    padding: 15px;
+
+    background:
+        rgba(5, 12, 8, 0.92);
+
+    border-left:
+        3px solid
+        var(--verde-brillo);
+
+    border-radius: 8px;
+
+    overflow-x: auto;
+}
+
+pre code {
+    padding: 0;
+
+    border: none;
+}
+
+
+/* ==============================
+   BOTONES
+================================ */
+
+button,
+.boton {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 11px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde-oliva),
+            var(--verde-militar)
+        );
+
+    color: white;
+
+    border:
+        1px solid
+        var(--verde-acento);
+
+    border-radius: 7px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+button:hover,
+.boton:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        var(--verde-brillo);
+
+    color:
+        var(--negro);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.40),
+
+        0 0 18px
+        rgba(184, 239, 114, 0.30);
+}
+
+
+/* ==============================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--negro);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--verde-oliva);
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--verde-brillo);
+}
+
+
+/* ==============================
+   TABLET
+================================ */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        width: 200px;
+    }
+}
+
+
+/* ==============================
+   CELULAR
+================================ */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+
+        background-attachment: scroll;
+    }
+
+    header {
+        padding: 15px;
+
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        width: 160px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+
+        letter-spacing: 2px;
+    }
+
+    header p {
+        font-size: 0.85rem;
+
+        letter-spacing: 1px;
+    }
+
+    main {
+        gap: 15px;
+    }
+
+    .comando {
+        padding: 22px;
+    }
+
+    .comando h2 {
+        font-size: 1.25rem;
+    }
+
+    .comando p {
+        font-size: 0.95rem;
+    }
+
+    .comando:hover {
+        transform:
+            translateY(-5px);
+    }
+
+    button,
+    .boton {
+        width: 100%;
+
+        text-align: center;
+    }
+}
+
+
+/* ==============================
+   PANTALLAS GRANDES
+================================ */
+
+@media (min-width: 1400px) {
+
+    header,
+    main {
+        max-width: 1250px;
+    }
+
+    .logo {
+        width: 290px;
+    }
+
+    .comando {
+        padding: 32px;
+    }
+}
